@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../hooks/reduxHooks.ts"
+import { Input } from "../Input/Input.tsx"
 
 interface Props {
   activeTrain: string | null
@@ -24,10 +25,25 @@ export const TrainCharacteristic = ({ activeTrain }: Props) => {
         </thead>
         <tbody>
           {trainInfo.characteristics.map((char, index) => (
-            <tr key={index}>
-              <td>{char.engineAmperage}</td>
-              <td>{char.force}</td>
-              <td>{char.speed}</td>
+            <tr key={trainInfo.name + index}>
+              <td>
+                <Input
+                  initialValue={`${char.engineAmperage}`}
+                  validations={{ isInteger: true, isPositive: true }}
+                />
+              </td>
+              <td>
+                <Input
+                  initialValue={`${char.force}`}
+                  validations={{ isPositive: true }}
+                />
+              </td>
+              <td>
+                <Input
+                  initialValue={`${char.speed}`}
+                  validations={{ isNonNegative: true, isInteger: true }}
+                />
+              </td>
             </tr>
           ))}
         </tbody>
