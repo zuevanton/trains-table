@@ -1,18 +1,16 @@
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks.ts"
-import { fetchTrains } from "./store/TrainsListSlice.ts"
+import { TrainsList } from "./components/TrainsList/TrainsList.tsx"
+import { TrainCharacteristic } from "./components/TrainCharacteristic/TrainCharacteristic.tsx"
+import { useState } from "react"
+import { TrainInfo } from "./types/trains.types.ts"
 
 function App() {
-  const dispatch = useAppDispatch()
-  const trains = useAppSelector((state) => state.trainsList)
-  useEffect(() => {
-    dispatch(fetchTrains())
-  }, [])
+  const [activeTrain, setActiveTrain] = useState<TrainInfo["name"] | null>(null)
   return (
-    <div>
-      {trains.map((train) => (
-        <div key={train.name}>{train.name}</div>
-      ))}
+    <div className="container">
+      <div>
+        <TrainsList trainHandler={setActiveTrain} />
+        <TrainCharacteristic activeTrain={activeTrain} />
+      </div>
     </div>
   )
 }
