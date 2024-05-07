@@ -7,10 +7,8 @@ function App() {
   const [activeTrain, setActiveTrain] = useState<TrainInfo["name"] | null>(null)
   return (
     <div className="container">
-      <div>
-        <TrainsList trainHandler={setActiveTrain} />
-        <TrainCharacteristic activeTrain={activeTrain} />
-      </div>
+      <TrainsList trainHandler={setActiveTrain} />
+      <TrainCharacteristic activeTrain={activeTrain} />
     </div>
   )
 }

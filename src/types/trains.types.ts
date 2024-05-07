@@ -5,7 +5,7 @@ export interface TrainInfo {
 }
 
 export interface Characteristic {
-  speed: number
-  force: number
-  engineAmperage: number
+  speed: number | string
+  force: number | string
+  engineAmperage: number | string
 }
